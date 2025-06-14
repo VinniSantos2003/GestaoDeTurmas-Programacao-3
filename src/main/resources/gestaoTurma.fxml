@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="846.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gestaoTurmaController">
+   <children>
+      <TabPane fx:id="mainTabPane" layoutX="14.0" layoutY="81.0" prefHeight="662.0" prefWidth="1263.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Cadastro de Turmas">
+               <content>
+                  <AnchorPane prefHeight="612.0" prefWidth="1263.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" layoutX="14.0" layoutY="20.0" prefHeight="601.0" prefWidth="1240.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Pane layoutX="14.0" layoutY="14.0" prefHeight="215.0" prefWidth="572.0">
+                                       <children>
+                                          <TextField fx:id="fieldClassStudentsCapacity" layoutX="164.0" layoutY="30.0" />
+                                          <Text layoutX="26.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidade de alunos" />
+                                          <ComboBox fx:id="comboBoxCurso" layoutX="164.0" layoutY="73.0" prefWidth="150.0" />
+                                          <Text layoutX="25.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Curso" />
+                                          <TextField fx:id="fieldClassTeacherName" editable="false" layoutX="164.0" layoutY="117.0" />
+                                          <TextField fx:id="fieldClassDiscipline" editable="false" layoutX="164.0" layoutY="160.0" />
+                                          <Text layoutX="25.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor" />
+                                          <Text layoutX="24.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disciplina" />
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="27.0" layoutY="229.0" prefHeight="250.0" prefWidth="563.0">
+                                       <children>
+                                          <Text layoutX="237.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alunos da Turma" />
+                                          <TableView fx:id="selectedStudents" layoutX="16.0" layoutY="36.0" prefHeight="200.0" prefWidth="531.0">
+                                            <columns>
+                                              <TableColumn fx:id="columnSelectedStudentNameClass" prefWidth="310.0" text="Nome" />
+                                              <TableColumn fx:id="columnSelectedStudentRegistrationClass" prefWidth="220.0" text="Matricula" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </Pane>
+                                    <Button fx:id="saveClassButton" layoutX="45.0" layoutY="479.0" mnemonicParsing="false" onAction="#saveClass" text="Cadastrar Turma" />
+                                    <Button layoutX="344.0" layoutY="479.0" mnemonicParsing="false" onAction="#clearAllField" text="Limpar Tudo" />
+                                    <Button fx:id="removeStudentFromClassButton" layoutX="480.0" layoutY="479.0" mnemonicParsing="false" onAction="#removeStudentFromClass" text="Remover Aluno" />
+                                    <Button fx:id="saveEditedClassButton" disable="true" layoutX="177.0" layoutY="479.0" mnemonicParsing="false" onAction="#saveClass" text="Salvar Edicao" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="599.0" prefWidth="647.0">
+                                 <children>
+                                    <Pane layoutX="5.0" layoutY="6.0" prefHeight="587.0" prefWidth="606.0">
+                                       <children>
+                                          <TableView fx:id="registredTeachers" layoutX="16.0" layoutY="41.0" prefHeight="130.0" prefWidth="575.0">
+                                            <columns>
+                                              <TableColumn fx:id="columnTeacherNameClass" prefWidth="334.0" text="Nome" />
+                                              <TableColumn fx:id="columnTeacherFormationClass" prefWidth="240.0" text="Formacao" />
+                                            </columns>
+                                          </TableView>
+                                          <TableView fx:id="registredStudents" layoutX="16.0" layoutY="247.0" prefHeight="130.0" prefWidth="575.0">
+                                             <columns>
+                                                <TableColumn fx:id="columnStudentNameClass" prefWidth="384.0" text="Nome" />
+                                                <TableColumn fx:id="columnStudentRegistrationClass" prefWidth="190.0" text="Matricula" />
+                                             </columns>
+                                          </TableView>
+                                          <TableView fx:id="registredDiscipline" layoutX="15.0" layoutY="428.0" prefHeight="103.0" prefWidth="575.0">
+                                             <columns>
+                                                <TableColumn fx:id="columnDisciplineNameClass" prefWidth="414.0" text="Nome" />
+                                                <TableColumn fx:id="columnDisciplineCreditsClass" prefWidth="160.0" text="Créditos" />
+                                             </columns>
+                                          </TableView>
+                                          <Text layoutX="273.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professores" />
+                                          <Text layoutX="285.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alunos" />
+                                          <Text layoutX="274.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disciplinas" />
+                                          <Button layoutX="14.0" layoutY="531.0" mnemonicParsing="false" onAction="#setDiscipline" text="Selecionar disciplina" />
+                                          <Button layoutX="14.0" layoutY="377.0" mnemonicParsing="false" onAction="#setStudents" text="Selecionar aluno" />
+                                          <Button layoutX="14.0" layoutY="171.0" mnemonicParsing="false" onAction="#setTeacher" text="Selecionar professor" />
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Edicao Turmas">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane layoutX="14.0" layoutY="8.0" prefHeight="618.0" prefWidth="1243.0">
+                           <children>
+                              <TableView fx:id="registeredClass" layoutX="14.0" layoutY="14.0" prefHeight="456.0" prefWidth="681.0">
+                                <columns>
+                                  <TableColumn fx:id="registeredClassDisciplineColumn" prefWidth="122.0" text="Disciplina" />
+                                  <TableColumn fx:id="registeredClassCourseColumn" prefWidth="133.0" text="Curso" />
+                                    <TableColumn fx:id="registeredClassTeacherColumn" prefWidth="274.0" text="Professor" />
+                                    <TableColumn fx:id="registeredClassStudentsCapacityColumn" prefWidth="149.0" text="Capacidade de Alunos" />
+                                </columns>
+                              </TableView>
+                              <Button layoutX="14.0" layoutY="495.0" mnemonicParsing="false" onAction="#editClass" prefHeight="75.0" prefWidth="238.0" text="Editar Turma" />
+                              <Button fx:id="deleteClass" layoutX="457.0" layoutY="489.0" mnemonicParsing="false" onAction="#deletedClass" prefHeight="75.0" prefWidth="238.0" text="Deletar Turma" />
+                           </children></Pane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Professor">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" layoutX="10.0" layoutY="13.0" prefHeight="682.0" prefWidth="1242.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="638.0" prefWidth="609.0">
+                                 <children>
+                                    <Pane layoutX="16.0" layoutY="14.0" prefHeight="200.0" prefWidth="586.0">
+                                       <children>
+                                          <TextField fx:id="fieldTeacherName" layoutX="136.0" layoutY="66.0" />
+                                          <Text layoutX="14.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome completo" />
+                                          <ComboBox id="comboBoxFormacao" fx:id="comboboxFormacao" layoutX="135.0" layoutY="110.0" prefWidth="150.0" />
+                                          <Text layoutX="14.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formacao" />
+                                          <Text layoutX="245.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Professor" />
+                                          <Button fx:id="registerTeacherButton" layoutX="400.0" layoutY="146.0" mnemonicParsing="false" onAction="#saveTeacher" prefHeight="37.0" prefWidth="69.0" text="Cadastrar" />
+                                          <Button layoutX="489.0" layoutY="146.0" mnemonicParsing="false" onAction="#clearAllField" prefHeight="37.0" prefWidth="69.0" text="Limpar" />
+                                          <Button fx:id="saveEditedTeacherButton" disable="true" layoutX="287.0" layoutY="146.0" mnemonicParsing="false" onAction="#saveEditedTeacher" prefHeight="37.0" prefWidth="101.0" text="Salvar edicão" />
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView id="tabelaProfessor" fx:id="tableTeachers" layoutX="6.0" layoutY="14.0" prefHeight="426.0" prefWidth="606.0">
+                                      <columns>
+                                        <TableColumn fx:id="columnTeacherName" editable="false" prefWidth="452.0" text="Nome" />
+                                        <TableColumn fx:id="columnTeacherFormation" minWidth="0.0" prefWidth="153.0" text="Formacao" />
+                                      </columns>
+                                    </TableView>
+                                    <Button id="editarProfessor" layoutX="14.0" layoutY="449.0" mnemonicParsing="false" onAction="#editTeacher" prefHeight="37.0" prefWidth="289.0" text="Editar professor" />
+                                    <Button id="editarProfessor" layoutX="317.0" layoutY="449.0" mnemonicParsing="false" onAction="#deleteTeacher" prefHeight="37.0" prefWidth="289.0" text="Deletar Professor" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Disciplina">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" layoutX="14.0" layoutY="14.0" prefHeight="672.0" prefWidth="1242.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Pane layoutX="13.0" layoutY="14.0" prefHeight="192.0" prefWidth="589.0">
+                                       <children>
+                                          <TextField fx:id="fieldDisciplineName" layoutX="87.0" layoutY="59.0" prefHeight="25.0" prefWidth="200.0" />
+                                          <TextField fx:id="fieldDisciplineCredits" layoutX="87.0" layoutY="96.0" />
+                                          <Text layoutX="21.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome " />
+                                          <Text layoutX="21.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créditos" />
+                                          <Text layoutX="226.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Disciplinas" />
+                                          <Button fx:id="registerDisciplineButton" layoutX="402.0" layoutY="141.0" mnemonicParsing="false" onAction="#saveDiscipline" prefHeight="37.0" prefWidth="69.0" text="Cadastrar" />
+                                          <Button layoutX="493.0" layoutY="141.0" mnemonicParsing="false" onAction="#clearAllField" prefHeight="37.0" prefWidth="69.0" text="Limpar" />
+                                          <Button fx:id="saveEditedDisciplineButton" disable="true" layoutX="281.0" layoutY="141.0" mnemonicParsing="false" onAction="#saveEditedDiscipline" prefHeight="37.0" prefWidth="97.0" text="Salvar Edicão" />
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView fx:id="tableDiscipline" layoutX="13.0" layoutY="14.0" prefHeight="426.0" prefWidth="586.0">
+                                      <columns>
+                                        <TableColumn fx:id="columnDisciplineName" editable="false" prefWidth="411.0" text="Disciplina" />
+                                        <TableColumn fx:id="columnDisciplineCredits" editable="false" minWidth="0.0" prefWidth="174.0" text="Cŕeditos" />
+                                      </columns>
+                                    </TableView>
+                                    <Button layoutX="13.0" layoutY="442.0" mnemonicParsing="false" onAction="#editDiscipline" prefHeight="37.0" prefWidth="289.0" text="Editar Disciplina" />
+                                    <Button layoutX="309.0" layoutY="442.0" mnemonicParsing="false" onAction="#deleteDiscipline" prefHeight="37.0" prefWidth="289.0" text="Deletar Disciplina" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Aluno">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" layoutX="14.0" layoutY="14.0" prefHeight="682.0" prefWidth="1242.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Pane layoutX="14.0" layoutY="10.0" prefHeight="200.0" prefWidth="590.0">
+                                       <children>
+                                          <Button fx:id="registerStudentButton" layoutX="388.0" layoutY="149.0" mnemonicParsing="false" onAction="#saveStudent" prefHeight="37.0" prefWidth="69.0" text="Cadastrar" />
+                                          <Button layoutX="493.0" layoutY="149.0" mnemonicParsing="false" onAction="#clearAllField" prefHeight="37.0" prefWidth="69.0" text="Limpar" />
+                                          <TextField fx:id="fieldStudentRegistration" layoutX="89.0" layoutY="88.0" />
+                                          <TextField fx:id="fieldStudentName" layoutX="89.0" layoutY="52.0" prefHeight="25.0" prefWidth="251.0" />
+                                          <Text layoutX="17.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matrícula" />
+                                          <Text layoutX="17.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome " />
+                                          <Text layoutX="229.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Alunos" />
+                                          <Button fx:id="saveEditedStudentButton" disable="true" layoutX="246.0" layoutY="149.0" mnemonicParsing="false" onAction="#saveEditedStudent" prefHeight="37.0" prefWidth="110.0" text="Salvar edicão" />
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView fx:id="tableStudent" layoutX="14.0" layoutY="14.0" prefHeight="426.0" prefWidth="593.0">
+                                      <columns>
+                                        <TableColumn fx:id="columnStudentName" editable="false" prefWidth="382.0" text="Nome" />
+                                        <TableColumn fx:id="columnStudentRegistration" editable="false" prefWidth="210.0" text="Matricula" />
+                                      </columns>
+                                    </TableView>
+                                    <Button layoutX="14.0" layoutY="440.0" mnemonicParsing="false" onAction="#editStudent" prefHeight="37.0" prefWidth="289.0" text="Editar aluno" />
+                                    <Button layoutX="311.0" layoutY="440.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="37.0" prefWidth="289.0" text="Deletar Aluno" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Text layoutX="457.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de Turmas">
+         <font>
+            <Font size="47.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            >
+
+    <top>
+        <Label text="Gerenciamento de Turmas"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"
+               BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane">
+            <!-- Aba Dados da Turma -->
+            <Tab text="Dados da Turma">
+                <GridPane hgap="10" vgap="10">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+
+                    <Label text="Disciplina:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtDisciplina" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Créditos:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtCreditos" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Curso:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="cbCurso" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Capacidade:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtCapacidade" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                </GridPane>
+            </Tab>
+
+            <!-- Aba Professor -->
+            <Tab text="Professor">
+                <GridPane hgap="10" vgap="10">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+
+                    <Label text="Nome:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtProfessor" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Formação:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="cbFormacaoProfessor" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Professor Selecionado:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="cbProfessor" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Button text="Adicionar Professor" GridPane.rowIndex="3" GridPane.columnIndex="1"
+                            />
+                </GridPane>
+            </Tab>
+
+            <!-- Aba Alunos -->
+            <Tab text="Alunos">
+                <VBox spacing="10">
+                    <Label text="Todos os Alunos"/>
+                    <TableView fx:id="tabelaAlunos" prefHeight="150" prefWidth="150">
+                        <columns>
+                            <TableColumn fx:id="colunaNome" text="Nome"/>
+                            <TableColumn fx:id="colunaMatriculaAluno" text="Matrícula"/>
+                        </columns>
+                    </TableView>
+
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button text="Adicionar Aluno" fx:id="btnAddAluno" />
+                        <Button text="Remover Aluno" fx:id="btnRemoverAluno" />
+                        <Button text="Selecionar Aluno para Turma" />
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Alunos Selecionados para a Turma"/>
+                    <TableView fx:id="tabelaSelecionados" prefHeight="150" prefWidth="150">
+                        <columns>
+                            <TableColumn text="Nome" fx:id="colunaNomeSelecionado"/>
+                            <TableColumn text="Matrícula" fx:id="colunaMatriculaSelecionado"/>
+                        </columns>
+                    </TableView>
+
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <Button text="Remover Selecionado" />
+                    </HBox>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Salvar" fx:id="btnSalvar" style="-fx-font-weight: bold;"/>
+            <Button text="Cancelar" fx:id="btnCancelar" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
