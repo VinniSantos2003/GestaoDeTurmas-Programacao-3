@@ -36,9 +36,10 @@ public class telaPrincipalController implements Initializable {
     @FXML public void exportar(){
         jsonHandler jH = new jsonHandler();
         xmlHandler xmlH = new xmlHandler();
+        File caminho = jsonHandler.selecaoDeCaminho();
         try{
-            jH.exportJson();
-            xmlH.exportarXml();
+            jH.exportJson(caminho);
+            xmlH.exportarXml(caminho);
             gestaoTurmaController.showAlert("Aviso",
                     "Exportação de arquivos",
                     "Arquivos exportados com sucesso",

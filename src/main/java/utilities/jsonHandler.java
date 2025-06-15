@@ -1,6 +1,7 @@
 package utilities;
 
 import com.google.gson.Gson;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.*;
@@ -18,10 +19,11 @@ public class jsonHandler {
     List<Aluno> aList = Lista.listaAlunos;
     List<Turma> aTurma = Lista.listaTurma;
 
-    public void exportJson(){
+    public void exportJson(File caminho){
         Gson gson = new Gson();
         jsonHandler l = new jsonHandler();
-        try(FileWriter w = new FileWriter("dados.json")){
+        File output = new File(caminho,"dados.json");
+        try(FileWriter w = new FileWriter(output)){
             gson.toJson(l,w);
         }catch (IOException e){
             e.printStackTrace();
@@ -58,5 +60,12 @@ public class jsonHandler {
             e.printStackTrace();
         }
         return null;
+    }
+    public static File selecaoDeCaminho(){
+        Stage stage = new Stage();
+        DirectoryChooser dc = new DirectoryChooser();
+        dc.setTitle("Escolher local de salvamento de arquivos");
+        return dc.showDialog(stage);
+
     }
 }

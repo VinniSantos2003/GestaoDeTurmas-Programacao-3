@@ -7,13 +7,14 @@ import model.staticModels.Lista;
 import java.io.File;
 
 public class xmlHandler {
-    public void exportarXml(){
+    public void exportarXml(File caminho){
         try{
             TempXMLList t = new TempXMLList();
             t.exportMode();
             XmlMapper xmlMapper = new XmlMapper();
             xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
-            xmlMapper.writeValue(new File("dadosXML.xml"),t);
+            File output = new File(caminho,"dados.xml");
+            xmlMapper.writeValue(output,t);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
