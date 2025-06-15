@@ -4,11 +4,12 @@
  */
 package model;
 
-/**
- *
- * @author -
- */
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JacksonXmlRootElement(localName = "disciplina")
 public class Disciplina {
+    @JacksonXmlProperty(isAttribute = true)
     private String nomeDisciplina;
     private int creditos;
 

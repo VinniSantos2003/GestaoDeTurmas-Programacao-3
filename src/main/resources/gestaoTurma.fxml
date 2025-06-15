@@ -238,5 +238,6 @@
             <Font size="47.0" />
          </font>
       </Text>
+      <Button layoutX="33.0" layoutY="752.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="25.0" prefWidth="87.0" text="Voltar" />
    </children>
 </AnchorPane>

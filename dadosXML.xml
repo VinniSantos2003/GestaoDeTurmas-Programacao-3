@@ -1,0 +1,34 @@
+<TempXMLList>
+  <listaAlunos>
+    <aluno nomeAluno="Vinicius">
+      <matriculaAluno>1</matriculaAluno>
+    </aluno>
+  </listaAlunos>
+  <listaDisciplina>
+    <disciplina nomeDisciplina="ED2">
+      <creditos>123</creditos>
+    </disciplina>
+  </listaDisciplina>
+  <listaProfessor>
+    <professor nomeProfessor="Irineu">
+      <grauFormacao>Doutorado</grauFormacao>
+    </professor>
+  </listaProfessor>
+  <listaTurma>
+    <turma>
+      <professorTitular nomeProfessor="Irineu">
+        <grauFormacao>Doutorado</grauFormacao>
+      </professorTitular>
+      <disciplina nomeDisciplina="ED2">
+        <creditos>123</creditos>
+      </disciplina>
+      <curso>SI</curso>
+      <capacidadeAlunos>1</capacidadeAlunos>
+      <listaAlunos>
+        <aluno nomeAluno="Vinicius">
+          <matriculaAluno>1</matriculaAluno>
+        </aluno>
+      </listaAlunos>
+    </turma>
+  </listaTurma>
+</TempXMLList>

@@ -4,10 +4,16 @@
  */
 package model;
 
+
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.UUID;
 
-
+@JacksonXmlRootElement(localName = "aluno")
 public class Aluno {
+    @JacksonXmlProperty(isAttribute = true)
     private String nomeAluno;
     private int matriculaAluno;
 

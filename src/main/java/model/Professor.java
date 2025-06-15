@@ -5,7 +5,12 @@
 package model;
 
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JacksonXmlRootElement(localName = "professor")
 public class Professor {
+    @JacksonXmlProperty(isAttribute = true)
     private String nomeProfessor;
     private Formacao grauFormacao;
 

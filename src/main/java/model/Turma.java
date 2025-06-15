@@ -4,18 +4,25 @@
  */
 package model;
 
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.ArrayList;
 
-/**
- *
- * @author -
- */
+@JacksonXmlRootElement(localName = "turma")
 public class Turma {
+    @JacksonXmlProperty(isAttribute = true)
     private Professor professorTitular;
     private Disciplina disciplina;
-    private ArrayList<Aluno> listaAlunos;
     private Curso curso;
     private int capacidadeAlunos;
+
+    @JacksonXmlElementWrapper(localName = "listaAlunos")
+    @JacksonXmlProperty(localName = "aluno")
+    private ArrayList<Aluno> listaAlunos;
+
 
     public Professor getProfessorTitular() {
         return professorTitular;

@@ -1,4 +1,5 @@
 package controller;
+import gestaodeturmas.App;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,16 +10,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import model.staticModels.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
 
 public class gestaoTurmaController implements Initializable {
     public gestaoTurmaController(){
 
     }
-    //PERMITIR A CRIAÇÃO DA CLASSE TURMA SE ALUNOS
     //Cadastro Curso
     @FXML private TextField fieldClassStudentsCapacity;
     @FXML private TextField fieldClassTeacherName;
@@ -118,11 +117,12 @@ public class gestaoTurmaController implements Initializable {
                     waitingClass.setProfessorTitular(waitingTeacher);
                     waitingClass.setDisciplina(waitingDiscipline);
                     waitingClass.setCapacidadeAlunos(Integer.parseInt(fieldClassStudentsCapacity.getText()));
+                    waitingClass.getListaAlunos().clear();
                     for (int i = 0; i < OLSelectedStudents.size(); i++) {
-                        waitingClass.getListaAlunos().add(OLSelectedStudents.get(i));
+                            waitingClass.getListaAlunos().add(OLSelectedStudents.get(i));
                     }
-                    if(!listaTurma.listaTurma.contains(waitingClass)){
-                        listaTurma.listaTurma.add(waitingClass);
+                    if(!Lista.listaTurma.contains(waitingClass)){
+                        Lista.listaTurma.add(waitingClass);
                     }
                     saveClassButton.setDisable(false);
                     saveEditedClassButton.setDisable(true);
@@ -142,7 +142,7 @@ public class gestaoTurmaController implements Initializable {
     @FXML public void editClass(){
         try{
             clearAllField();
-            waitingClass = listaTurma.listaTurma.get(registeredClass.getSelectionModel().getSelectedIndex());
+            waitingClass = Lista.listaTurma.get(registeredClass.getSelectionModel().getSelectedIndex());
             waitingDiscipline = waitingClass.getDisciplina();
             waitingTeacher = waitingClass.getProfessorTitular();
             mainTabPane.getSelectionModel().selectFirst();
@@ -165,7 +165,7 @@ public class gestaoTurmaController implements Initializable {
                     "Por favor, selecione uma turma para deleção",
                     Alert.AlertType.WARNING);
         }else{
-            listaTurma.listaTurma.remove(registeredClass.getSelectionModel().getSelectedIndex());
+            Lista.listaTurma.remove(registeredClass.getSelectionModel().getSelectedIndex());
             buildClassTable();
 
         }
@@ -182,19 +182,19 @@ public class gestaoTurmaController implements Initializable {
             Professor p = new Professor();
             p.setNomeProfessor(fieldTeacherName.getText());
             p.setGrauFormacao(comboboxFormacao.getSelectionModel().getSelectedItem());
-            listaProfessor.listaProfessor.add(p);
+            Lista.listaProfessor.add(p);
             clearAllField();
             buildTeacherTable();
         }
     }
     @FXML public void setTeacher(){
         int index = registredTeachers.getSelectionModel().getSelectedIndex();
-        waitingTeacher = listaProfessor.listaProfessor.get(index); // Tenho que testar
+        waitingTeacher = Lista.listaProfessor.get(index); // Tenho que testar
         fieldClassTeacherName.setText(waitingTeacher.getNomeProfessor());
         System.out.println("Teacher selected");
     }
     @FXML public void editTeacher(){
-        teacherToBeEdit = listaProfessor.listaProfessor.get(tableTeachers.getSelectionModel().getSelectedIndex());
+        teacherToBeEdit = Lista.listaProfessor.get(tableTeachers.getSelectionModel().getSelectedIndex());
         saveTeacherButton.setDisable(true);
         saveEditedTeacherButton.setDisable(false);
         fieldTeacherName.setText(teacherToBeEdit.getNomeProfessor());
@@ -214,7 +214,7 @@ public class gestaoTurmaController implements Initializable {
                     "Por favor, selecione um professor para deleção",
                     Alert.AlertType.WARNING);
         }else{
-            listaProfessor.listaProfessor.remove(tableTeachers.getSelectionModel().getSelectedIndex());
+            Lista.listaProfessor.remove(tableTeachers.getSelectionModel().getSelectedIndex());
             buildTeacherTable();
         }
     }
@@ -230,7 +230,7 @@ public class gestaoTurmaController implements Initializable {
                 Aluno aluno = new Aluno();
                 aluno.setMatriculaAluno(Integer.parseInt(fieldStudentRegistration.getText()));
                 aluno.setNomeAluno(fieldStudentName.getText());
-                listaAlunos.listaAlunos.add(aluno);
+                Lista.listaAlunos.add(aluno);
                 clearAllField();
                 buildStudentTable();
             }
@@ -256,7 +256,7 @@ public class gestaoTurmaController implements Initializable {
         System.out.println("Student selected");
     }
     @FXML public void editStudent(){
-        studentToBeEdit = listaAlunos.listaAlunos.get(tableStudent.getSelectionModel().getSelectedIndex());
+        studentToBeEdit = Lista.listaAlunos.get(tableStudent.getSelectionModel().getSelectedIndex());
         saveStudentButton.setDisable(true);
         saveEditedStudentButton.setDisable(false);
         fieldStudentName.setText(studentToBeEdit.getNomeAluno());
@@ -276,7 +276,7 @@ public class gestaoTurmaController implements Initializable {
                     "Por favor, selecione um aluno para deleção",
                     Alert.AlertType.WARNING);
         }else{
-            listaAlunos.listaAlunos.remove(tableStudent.getSelectionModel().getSelectedIndex());
+            Lista.listaAlunos.remove(tableStudent.getSelectionModel().getSelectedIndex());
             buildStudentTable();
         }
     }
@@ -292,7 +292,7 @@ public class gestaoTurmaController implements Initializable {
                 Disciplina d = new Disciplina();
                 d.setNomeDisciplina(fieldDisciplineName.getText());
                 d.setCreditos(Integer.parseInt(fieldDisciplineCredits.getText()));
-                listaDisciplina.listaDisciplina.add(d);
+                Lista.listaDisciplina.add(d);
                 clearAllField();
                 buildDisciplineTable();
             }
@@ -305,12 +305,12 @@ public class gestaoTurmaController implements Initializable {
     }
     @FXML public void setDiscipline(){
         int i = registredDiscipline.getSelectionModel().getSelectedIndex();
-        waitingDiscipline = listaDisciplina.listaDisciplina.get(i);
+        waitingDiscipline = Lista.listaDisciplina.get(i);
         fieldClassDiscipline.setText(waitingDiscipline.getNomeDisciplina());
         System.out.println("Course selected");
     }
     @FXML public void editDiscipline(){
-        disciplineToBeEdit = listaDisciplina.listaDisciplina.get(tableDiscipline.getSelectionModel().getSelectedIndex());
+        disciplineToBeEdit = Lista.listaDisciplina.get(tableDiscipline.getSelectionModel().getSelectedIndex());
         saveEditedDisciplineButton.setDisable(false);
         registredDiscipline.setDisable(true);
         fieldDisciplineName.setText(disciplineToBeEdit.getNomeDisciplina());
@@ -330,7 +330,7 @@ public class gestaoTurmaController implements Initializable {
                     "Por favor, selecione uma disciplina para deleção",
                     Alert.AlertType.WARNING);
         }else{
-            listaDisciplina.listaDisciplina.remove(tableDiscipline.getSelectionModel().getSelectedIndex());
+            Lista.listaDisciplina.remove(tableDiscipline.getSelectionModel().getSelectedIndex());
             buildDisciplineTable();
         }
     }
@@ -360,6 +360,7 @@ public class gestaoTurmaController implements Initializable {
                     Alert.AlertType.WARNING);
         }else {
             OLSelectedStudents.remove(selectedStudents.getSelectionModel().getSelectedIndex());
+           // waitingClass.getListaAlunos().remove(selectedStudents.getSelectionModel().getSelectedIndex());
         }
     }
     //Utility - FXML
@@ -389,6 +390,11 @@ public class gestaoTurmaController implements Initializable {
         }
         System.out.println("Fields cleared");
     }
+    @FXML private void mainScreen() throws IOException {
+        saveClassButton.getScene().getWindow().setWidth(788);
+        saveClassButton.getScene().getWindow().setHeight(347);
+        App.setRoot("telaPrincipal");
+    }
     //Utility
     private void clearMainScreen(){
         //variação do metodo clearAllField sem o waintingTeacher e waitingDiscipline = null
@@ -398,7 +404,7 @@ public class gestaoTurmaController implements Initializable {
         fieldClassTeacherName.setText("");
         fieldClassDiscipline.setText("");
     }
-    private void showAlert(String title, String headerText, String contentText, Alert.AlertType alertType){
+    public static  void showAlert(String title, String headerText, String contentText, Alert.AlertType alertType){
         Alert a = new Alert(alertType);
         a.setTitle(title);
         a.setHeaderText(headerText);
@@ -407,19 +413,19 @@ public class gestaoTurmaController implements Initializable {
     }
     private void buildTeacherTable(){
         OLTeacher.clear();
-        OLTeacher.addAll(listaProfessor.listaProfessor);
+        OLTeacher.addAll(Lista.listaProfessor);
     }
     private void buildStudentTable(){
         OLStudent.clear();
-        OLStudent.addAll(listaAlunos.listaAlunos);
+        OLStudent.addAll(Lista.listaAlunos);
     }
     private void buildDisciplineTable(){
         OLDiscipline.clear();
-        OLDiscipline.addAll(listaDisciplina.listaDisciplina);
+        OLDiscipline.addAll(Lista.listaDisciplina);
     }
     private void buildClassTable(){
         OLClass.clear();
-        OLClass.addAll(listaTurma.listaTurma);
+        OLClass.addAll(Lista.listaTurma);
     }
     private void setUpTables(){
         //Tables on TabPane index 0
@@ -486,7 +492,10 @@ public class gestaoTurmaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setUpTables();
-
+        buildClassTable();
+        buildStudentTable();
+        buildDisciplineTable();
+        buildTeacherTable();
         //Configuração da table view professor
         comboboxFormacao.setItems(FXCollections.observableArrayList(Formacao.values()));
         comboBoxCurso.setItems(FXCollections.observableArrayList(Curso.values()));
